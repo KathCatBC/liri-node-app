@@ -1,17 +1,14 @@
 var fs = require('fs');
-var apiKeys = require('./keys.js');
+var req = require('request');
 
 var doThis = process.argv[2];
-console.log("input " + process.argv[2]);
-var withThis = process.argv[3]
-console.log("input " + process.argv[3]);
+var withThis = process.argv[3];
 
 if (doThis == "do-what-it-says") {
 	fs.readFile('random.txt', 'utf8', function(err, data) {
 	var randomArr = data.split(',');
 	doThis = randomArr[0];
-	withThis = randomArr[1];
-	console.log("do " + doThis + " with " + withThis);	        
+	withThis = randomArr[1];	        
     });
     doOutput();
 } else {
@@ -22,31 +19,38 @@ if (doThis == "do-what-it-says") {
 function doOutput() {
 	switch(doThis) {
 	    case "my-tweets":
-	    	console.log("tweet");
-	    	console.log(JSON.stringify(apiKeys.twitterKeys));
-	    	// console.log("length = " + keys.twitterKeys.length);
-	    	for (var key in apiKeys.twitterKeys ){
-	    		console.log(key + "=" + apiKeys.twitterKeys[key]+",");
-	    	}
 
-	    	AuthStr = "Authorization: OAuth oauth_consumer_key="+ "'" + apiKeys.twitterKeys[0] +"',"+ "oauth_signature_method='HMAC-SHA1',"
+	    	var Twitter = require("twitter");
+	    	var apiKeys = require("./keys.js")
+	    	
+			var client = new Twitter({
+  				consumer_key: apiKeys.twitterKeys.consumer_key,
+  				consumer_secret: apiKeys.twitterKeys.consumer_secret,
+  				access_token_key: apiKeys.twitterKeys.access_token_key,
+  				access_token_secret: apiKeys.twitterKeys.access_token_secret
+			});
 
-	    	console.log("auth string = " + AuthStr)
-	    	// API Call from Twitter console:
-
-				// GET /1.1/statuses/user_timeline.json?count=20&user_id=KathCat07 HTTP/1.1
-				// Authorization:
-				// OAuth oauth_consumer_key="DC0sePOBbQ8bYdC8r4Smg",oauth_signature_method="HMAC-SHA1",oauth_timestamp="1485111070",oauth_nonce="3178620281",oauth_version="1.0",oauth_token="2886195197-SNkTaPNBmOLCeJhiSUMeaG8FZhguarmjhiQ0rKG",oauth_signature="ERN5o4ufInys3uI96FApyf5ykQg%3D"
-				// Host:
-				// api.twitter.com
-				// X-Target-URI:
-				// https://api.twitter.com
-				// Connection:
-				// Keep-Alive
+			var params = {screen_name: 'KathCat07', count: 20};
+			client.get('statuses/user_timeline', params, function(error, tweets, response) {
+  				
+  				if (!error) {
+  					console.log("# of tweets = " + tweets.length);
+  					console.log("**************************************");
+   					for (i=0; i<=tweets.length-1; i++) {
+   						console.log("on " + tweets[0].created_at);
+   						console.log("I tweeted:  " + tweets[0].text);
+   						console.log("**************************************");
+   					} 
+   				} else {
+   					 console.log("oops... there was an error"); 
+  				} 
+			});
+	    	
 	        break;
+
 	    case "spotify-this-song":
 	    	console.log("music");
-	    	if (withThis == "") {
+	    	if (withThis == undefined) {
 	    		withThis = "The Sign" // by Ace of Base
 	    	}
 			// Artist(s)
@@ -54,29 +58,42 @@ function doOutput() {
 			// A preview link of the song from Spotify
 			// The album that the song is from
 			// if no song is provided then your program will default to
-			curl -X GET "https://api.spotify.com/v1/search?q=%22The+Sign%22&type=track" -H "Accept: application/json"
+			// curl -X GET "https://api.spotify.com/v1/search?q=%22The+Sign%22&type=track" -H "Accept: application/json"
 	        break;
+
 	    case "movie-this":
 	    	console.log("movie");
-	    	if (withThis == "") {
-	    		withThis =  'Mr. Nobody.'
+	    	if (withThis == undefined) {
+	    		withThis =  'Mr Nobody'
 	    	}
-	  		//Title of the movie.
-			// Year the movie came out.
-			// IMDB Rating of the movie.
-			// Country where the movie was produced.
-			// Language of the movie.
-			// Plot of the movie.
-			// Actors in the movie.
-			// Rotten Tomatoes Rating.
-			// Rotten Tomatoes URL.
+
+			var queryUrl = "http://www.omdbapi.com/?t=" + withThis + "&y=&plot=short&tomatoes=true&r=json";
+
+			req(queryUrl, function (er, res, body) {
+
+				if (er !== null) {
+					console.log("oops... there was an error"); 
+				} else if (JSON.parse(body).Response == "False"){
+					console.log("Error - " + withThis + " was not found!")
+				} else {
+				    console.log("Title:  " + JSON.parse(body).Title);
+				    console.log("Year:  " + JSON.parse(body).Year);
+				    console.log("IMDB Rating:  " + JSON.parse(body).imdbRating);
+				    console.log("Country:  " + JSON.parse(body).Country);
+				    console.log("Language:  " + JSON.parse(body).Language);
+				    console.log("Plot:  " + JSON.parse(body).Plot);
+				    console.log("Actors:  " + JSON.parse(body).Actors);
+				    console.log("Rotten Tomatoes Rating:  " + JSON.parse(body).tomatoMeter);
+				    console.log("Rotten Tomatoes URL:  " + JSON.parse(body).tomatoURL);
+				}
+
+			});
+
 	    	break;
+
 	    default:
 	    	console.log("Sorry, that command is not recognized");
 	}
 
 	fs.appendFile('log.txt', '{' + process.argv[2] + ":" + process.argv[3] + "}, ");
 }
-
-
-
