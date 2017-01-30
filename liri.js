@@ -6,18 +6,23 @@ var withThis = process.argv[3];
 
 if (doThis == "do-what-it-says") {
 	fs.readFile('random.txt', 'utf8', function(err, data) {
-	var randomArr = data.split(',');
-	doThis = randomArr[0];
-	withThis = randomArr[1];	        
-    });
-    doOutput();
+
+		var randomArr = data.split(',');
+
+		doThis = randomArr[0];
+		withThis = randomArr[1];	        
+	   
+	    doOutput();
+     });
 } else {
 	doOutput();
 }
 
 
 function doOutput() {
+
 	switch(doThis) {
+		
 	    case "my-tweets":
 
 	    	var Twitter = require("twitter");
@@ -37,8 +42,8 @@ function doOutput() {
   					console.log("# of tweets = " + tweets.length);
   					console.log("**************************************");
    					for (i=0; i<=tweets.length-1; i++) {
-   						console.log("on " + tweets[0].created_at);
-   						console.log("I tweeted:  " + tweets[0].text);
+   						console.log("on " + tweets[i].created_at);
+   						console.log("I tweeted:  " + tweets[i].text);
    						console.log("**************************************");
    					} 
    				} else {
@@ -49,20 +54,28 @@ function doOutput() {
 	        break;
 
 	    case "spotify-this-song":
-	    	console.log("music");
+	  
 	    	if (withThis == undefined) {
-	    		withThis = "The Sign" // by Ace of Base
+	    		withThis = "The Sign by Ace of Base"
 	    	}
-			// Artist(s)
-			// The song's name
-			// A preview link of the song from Spotify
-			// The album that the song is from
-			// if no song is provided then your program will default to
-			// curl -X GET "https://api.spotify.com/v1/search?q=%22The+Sign%22&type=track" -H "Accept: application/json"
+
+			var spotify = require('spotify');
+ 
+  			spotify.search({ type: 'track', query: withThis }, function(err, data) {
+    			if ( err ) {
+        			console.log('Error occurred: ' + err);
+    			} else {
+					console.log("song:  " +    data.tracks.items[0].name);  
+     				console.log("preview:  " + data.tracks.items[0].preview_url);
+     				console.log("album:  " + 	 data.tracks.items[0].album.name);
+     				console.log("artists:  " + data.tracks.items[0].artists[0].name);
+    			};
+  			});
+
 	        break;
 
 	    case "movie-this":
-	    	console.log("movie");
+	    	
 	    	if (withThis == undefined) {
 	    		withThis =  'Mr Nobody'
 	    	}
