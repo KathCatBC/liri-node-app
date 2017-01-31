@@ -1,3 +1,4 @@
+
 {my-tweets:undefined}, generated the following results:
 # of tweets = 7
 **************************************
@@ -25,6 +26,44 @@ on Sun Jan 22 17:59:37 +0000 2017
 I tweeted:  Hello Twitter! #myfirstTweet
 **************************************
 +++++++++++++++++++++++++++++++++++++++++
-{movie-this:the hunger games}, generated the following results:
+{spotify-this-song:boris the spider}, generated the following results:
+song:  Boris The Spider
+preview URL: https://p.scdn.co/mp3-preview/d7a19564a1d00f374b6a574f920ba1ab00a7b8ff?cid=null
+album:  Meaty, Beaty, Big And Bouncy
+artists:  The Who
 +++++++++++++++++++++++++++++++++++++++++
-[object Object]
+{spotify-this-song:boris the spider}, generated the following results:
+song:  Boris The Spider
+preview URL: https://p.scdn.co/mp3-preview/d7a19564a1d00f374b6a574f920ba1ab00a7b8ff?cid=null
+album:  Meaty, Beaty, Big And Bouncy
+artists:  The Who
++++++++++++++++++++++++++++++++++++++++++
+{spotify-this-song:radar love}, generated the following results:
+song:  Radar Love
+preview URL: https://p.scdn.co/mp3-preview/564178de9dedf632b291b1568902fd6ac5cbae35?cid=null
+album:  The Long Versions - Part One
+artists:  Golden Earring
++++++++++++++++++++++++++++++++++++++++++
+{movie-this:the hunger games}, generated the following results:
+Title: The Hunger Games
+Year:  2012
+IMDB Rating:  7.2
+Country: USA
+Language:  English
+Plot:  Katniss Everdeen voluntarily takes her younger sister's place in the Hunger Games, a televised competition in which two teenagers from each of the twelve Districts of Panem are chosen at random to fight to the death.
+Actors:  Stanley Tucci, Wes Bentley, Jennifer Lawrence, Willow Shields
+Rotten Tomatoes Rating:  84
+Rotten Tomatoes URL:  http://www.rottentomatoes.com/m/the_hunger_games/
++++++++++++++++++++++++++++++++++++++++++
+{do-what-it-says:undefined}, generated the following results:
+song:  I Want It That Way
+preview URL: https://p.scdn.co/mp3-preview/e72a05dc3f69c891e3390c3ceaa77fad02f6b5f6?cid=null
+album:  The Hits--Chapter One
+artists:  Backstreet Boys
++++++++++++++++++++++++++++++++++++++++++
+{blah-blah:asdlkjfal}, generated the following results:
+Sorry, that command is not recognized
++++++++++++++++++++++++++++++++++++++++++
+{blah-blah:asdlkjfal}, generated the following results:
+Sorry, that command is not recognized
++++++++++++++++++++++++++++++++++++++++++
