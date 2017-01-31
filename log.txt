@@ -1,1 +1,30 @@
- {spotify-this:radar love}, {spotify-this-song:radar love}, {my-tweets:undefined}, {my-tweets:undefined}, {movie-this:undefined}, {movie-this:the hunger games}, {spotify-this:undefined}, {spotify-this-song:undefined}, {spotify-this-song:undefined}, {spotify-this-song:undefined}, {spotify-this-song:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, {do-what-it-says:undefined}, 
+{my-tweets:undefined}, generated the following results:
+# of tweets = 7
+**************************************
+on Mon Jan 30 02:46:06 +0000 2017
+I tweeted:  One homework done - two more to go!
+**************************************
+on Sun Jan 29 20:54:41 +0000 2017
+I tweeted:  Everybody that bought a Kentucky Fried Jayhawks shirt should get a refund from Calipari. #BBN
+**************************************
+on Sun Jan 29 16:29:39 +0000 2017
+I tweeted:  Why does 
+spotify.search({ type: "track", q: "radar love" , limit: "1"}, function(err,data) 
+not return the right song?????
+**************************************
+on Sat Jan 28 22:47:18 +0000 2017
+I tweeted:  Now it is time to finish OMDB API
+**************************************
+on Sat Jan 28 22:46:55 +0000 2017
+I tweeted:  Twitter API - done!
+**************************************
+on Wed Jan 25 21:24:05 +0000 2017
+I tweeted:  Learning the Twitter API!!
+**************************************
+on Sun Jan 22 17:59:37 +0000 2017
+I tweeted:  Hello Twitter! #myfirstTweet
+**************************************
++++++++++++++++++++++++++++++++++++++++++
+{movie-this:the hunger games}, generated the following results:
++++++++++++++++++++++++++++++++++++++++++
+[object Object]
