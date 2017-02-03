@@ -22,7 +22,7 @@
   - Make sure the song title is in quotes.
   
   - You will see information about this song from Spotify.
-  - All of the information will also be appended to log.txt.    
+  - All of the information will also be appended to log.txt.
 
 
 * On the command line type:
